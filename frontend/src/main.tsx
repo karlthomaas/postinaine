@@ -13,7 +13,7 @@ import './index.css';
 
 const router = createBrowserRouter([
   { path: '/', element: <Root />, errorElement: <ErrorPage />, children: [{ path: '/login', element: <LoginPage /> }] },
-]);
+]); 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -6,16 +6,18 @@ import { Button } from '@/components/atoms/button';
 import { Input } from '@/components/atoms/input';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/atoms/form';
-import { useMutation } from 'react-query';
-import axios from 'axios';
 import { LoadingSpinner } from '../atoms/loading-spinner';
+import { useLoginMutation } from '@/features/apiActions';
 
+import { redirect } from 'react-router-dom';
 const formSchema = z.object({
   email: z.string().email(),
   api_token: z.string().min(8),
 });
 
 export const LoginPanel = () => {
+  const [login, loginInfo] = useLoginMutation();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,22 +26,13 @@ export const LoginPanel = () => {
     },
   });
 
-  const mutation = useMutation({
-    mutationKey: 'login',
-    mutationFn: async (values: z.infer<typeof formSchema>) => {
-      return axios.get('https://newsapi.org/v2/top-headlines/sources', {
-        headers: {
-          'X-Api-Key': values.api_token,
-        },
-      });
-    },
-  });
-
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // ae92a97fb02040a598415c15d13a0cb1
-    // karl-thomas@zink.ee
-    console.log(values);
-    mutation.mutate(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await login(values).unwrap();
+      redirect('/news');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -77,7 +70,7 @@ export const LoginPanel = () => {
           )}
         />
         <Button type='submit' className='w-full'>
-          {mutation.isLoading ? <LoadingSpinner /> : 'Login'}
+          {loginInfo.isLoading ? <LoadingSpinner /> : 'Login'}
         </Button>
       </form>
     </Form>
