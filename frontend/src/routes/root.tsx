@@ -10,7 +10,7 @@ export default function Root() {
   return (
     <QueryClientProvider client={queryClient}>
       <Navbar />
-      <PageLayout>
+      <PageLayout className='min-h-[calc(100vh-56px)]'>
         <Outlet />
       </PageLayout>
       <Footer />

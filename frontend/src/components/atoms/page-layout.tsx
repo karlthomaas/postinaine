@@ -1,5 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 
-export const PageLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className='mx-auto max-w-screen-lg sm:p-2'>{children}</div>;
+interface PageLayoutProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const PageLayout = ({ children, className }: PageLayoutProps) => {
+  return <div className={clsx('mx-auto max-w-screen-lg sm:p-2', className)}>{children}</div>;
 };

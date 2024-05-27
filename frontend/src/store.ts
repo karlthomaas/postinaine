@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './features/auth/authSlice';
-import { backendApi } from './features/apiActions';
+
+import authReducer from '@/features/auth/authSlice';
+import { backendApi } from '@/features/apiActions';
 
 const store = configureStore({
   reducer: {
@@ -11,5 +12,9 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => 
   getDefaultMiddleware().concat(backendApi.middleware),
 });
+
+export type AppStore = typeof store;
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
 
 export default store;

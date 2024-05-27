@@ -50,9 +50,11 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      transitionDuration: {
+        '2000': '2000ms',
+      },
       fontFamily: {
         sans: ['Poppins', ...fontFamily.sans],
-        mono: ['IBM Plex Mono', 'monospace'],
       },
       borderRadius: {
         lg: 'var(--radius)',
