@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
-import { describe, it, expect, vi } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@/lib/test-utils';
 import { Navbar } from '@/components/organisms/navbar';
