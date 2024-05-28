@@ -26,10 +26,14 @@ export const LoginPanel = () => {
     },
   });
 
+  const navigateToHome = () => {
+    navigate('/');
+  };
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     login(values)
       .unwrap()
-      .then(() => navigate('/'))
+      .then(() => navigateToHome())
       .catch((error: LoginFetchError) => {
         if (error.status === 401) {
           form.setError('api_token', { message: error.data.detail });
@@ -43,9 +47,12 @@ export const LoginPanel = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='form-control h-max w-full max-w-[600px] space-y-5 border border-border sm:rounded-xl p-5 border-neutral-300 bg-white'
+        className='form-control h-max w-full max-w-[600px] space-y-5 border border-border border-neutral-300 bg-white p-5 sm:rounded-xl'
+        data-testid='login-form'
       >
-        <h1 className='text-center text-xl'>Welcome to News site</h1>
+        <h1 className='text-center text-xl' data-testid='login-form-header'>
+          Login to Postinaine
+        </h1>
         <FormField
           control={form.control}
           name='email'
@@ -53,7 +60,7 @@ export const LoginPanel = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder='email' {...field} />
+                <Input aria-label="email" placeholder='email' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -66,14 +73,14 @@ export const LoginPanel = () => {
             <FormItem>
               <FormLabel>API Token</FormLabel>
               <FormControl>
-                <Input placeholder='api token' {...field} />
+                <Input aria-label="api-token" placeholder='api token' {...field} />
               </FormControl>
-              <FormDescription>This is the token you used to sign up</FormDescription>
+              <FormDescription>Insert your newsapi token here</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type='submit' className='w-full'>
+        <Button type='submit' className='w-full' disabled={Object.values(form.formState.dirtyFields).length !== 2}>
           {loginInfo.isLoading ? <LoadingSpinner /> : 'Login'}
         </Button>
       </form>
