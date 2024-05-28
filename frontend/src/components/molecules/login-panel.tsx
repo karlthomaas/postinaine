@@ -60,7 +60,7 @@ export const LoginPanel = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input aria-label="email" placeholder='email' {...field} />
+                <Input aria-label='email' placeholder='email' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -73,9 +73,14 @@ export const LoginPanel = () => {
             <FormItem>
               <FormLabel>API Token</FormLabel>
               <FormControl>
-                <Input aria-label="api-token" placeholder='api token' {...field} />
+                <Input aria-label='api-token' placeholder='api token' {...field} />
               </FormControl>
-              <FormDescription>Insert your newsapi token here</FormDescription>
+              <FormDescription>
+                Get your API token from{' '}
+                <a target='_blank' className='text-primary underline' href='https://newsapi.org/account'>
+                  here
+                </a>
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
