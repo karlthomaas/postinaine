@@ -1,13 +1,13 @@
 export interface NewsQueryResponse {
-    status: string;
-    totalResults: number;
-    articles: NewsArticle[];
+  status: string;
+  totalResults: number;
+  articles: NewsArticle[];
 }
 
 export interface NewsQueryError {
-    status: string;
-    code: string;
-    message: string;
+  status: string;
+  code: string;
+  message: string;
 }
 
 export interface NewsArticle {
@@ -20,4 +20,20 @@ export interface NewsArticle {
   description: string;
   url: string;
   urlToImage: string;
+}
+
+export interface SessionQueryResponse {
+  id: string;
+}
+
+export interface LoginQueryResponse {
+  id: string;
+}
+
+export interface RefreshQueryResponse {
+  id: string;
+}
+
+export interface LogoutQueryResponse {
+  message: string;
 }

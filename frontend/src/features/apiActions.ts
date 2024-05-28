@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 import { login, logout } from '@/features/auth/authSlice';
-import { NewsQueryResponse } from '@/types/news';
+import { LoginQueryResponse, LogoutQueryResponse, NewsQueryResponse, SessionQueryResponse } from '@/types/news';
 export interface LoginFetchError {
   status: number;
   data: {
@@ -48,7 +48,7 @@ export const backendApi = createApi({
   reducerPath: 'backendApi',
   baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
-    login: builder.mutation({
+    login: builder.mutation<LoginQueryResponse, unknown>({
       query: (credentials) => ({
         url: '/login',
         method: 'POST',
@@ -59,14 +59,14 @@ export const backendApi = createApi({
         },
       }),
     }),
-    logout: builder.mutation<null, unknown>({
+    logout: builder.mutation<LogoutQueryResponse, null>({
       query: () => ({
         url: '/logout',
         method: 'POST',
         credentials: 'include',
       }),
     }),
-    session: builder.query({
+    session: builder.query<SessionQueryResponse, null>({
       query: () => ({
         url: '/session',
         method: 'GET',
