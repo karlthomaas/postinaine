@@ -12,15 +12,16 @@ export const Article = ({ article, size, isLoading }: ArticleProps) => {
     <a
       className={clsx(
         `flex h-max min-h-28 border border-neutral-200 bg-white font-medium transition-colors duration-300 ease-in-out
-         hover:border-primary sm:rounded-lg  `,
+         hover:border-primary sm:rounded-lg`,
         {
           'col-span-1 flex-row text-sm lg:col-span-2 ': size === 'sm',
           'min-h-[290px] flex-col space-y-3 pb-5': size === 'md',
-          'flex-col space-y-4 pb-5 lg:col-span-2 h-full': size === 'lg',
-          'duration-2000 animate-pulse bg-neutral-500': isLoading,
+          'h-full flex-col space-y-4 pb-5 lg:col-span-2': size === 'lg',
+          'animate-pulse bg-neutral-500 duration-2000': isLoading,
         }
       )}
       href={article?.url}
+      target='_blank'
     >
       {!isLoading && article && (
         <>
@@ -29,7 +30,8 @@ export const Article = ({ article, size, isLoading }: ArticleProps) => {
             alt={article.title}
             className={clsx('', {
               'size-28 rounded-l-lg object-cover': size === 'sm',
-              'rounded-t-lg': size === 'md' || size === 'lg',
+              'rounded-t-lg': size === 'md',
+              'rounded-t-lg lg:h-[270px] lg:object-cover': size === 'lg',
             })}
           />
           <h1
