@@ -17,7 +17,7 @@ export const Article = ({ article, size, isLoading }: ArticleProps) => {
           'col-span-1 flex-row text-sm lg:col-span-2 ': size === 'sm',
           'min-h-[290px] flex-col space-y-3 pb-5': size === 'md',
           'h-full flex-col space-y-4 pb-5 lg:col-span-2': size === 'lg',
-          'animate-pulse bg-neutral-500 duration-2000': isLoading,
+          'animate-pulse bg-neutral-500 duration-2000 hover:border-none': isLoading,
         }
       )}
       href={article?.url}
