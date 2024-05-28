@@ -1,5 +1,5 @@
 import path from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react-swc';
 
 
@@ -13,7 +13,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-
   plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: './vitest.setup.ts',
+  },
 });
 

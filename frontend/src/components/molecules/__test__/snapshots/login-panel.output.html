@@ -1,0 +1,64 @@
+<form
+  class="form-control h-max w-full max-w-[600px] space-y-5 border border-border border-neutral-300 bg-white p-5 sm:rounded-xl"
+  data-testid="login-form"
+>
+  <h1
+    class="text-center text-xl"
+    data-testid="login-form-header"
+  >
+    Login to Postinaine
+  </h1>
+  <div
+    class="space-y-2"
+  >
+    <label
+      class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      for=":r6:-form-item"
+    >
+      Email
+    </label>
+    <input
+      aria-describedby=":r6:-form-item-description"
+      aria-invalid="false"
+      aria-label="email"
+      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      id=":r6:-form-item"
+      name="email"
+      placeholder="email"
+      value=""
+    />
+  </div>
+  <div
+    class="space-y-2"
+  >
+    <label
+      class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      for=":r7:-form-item"
+    >
+      API Token
+    </label>
+    <input
+      aria-describedby=":r7:-form-item-description"
+      aria-invalid="false"
+      aria-label="api-token"
+      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      id=":r7:-form-item"
+      name="api_token"
+      placeholder="api token"
+      value=""
+    />
+    <p
+      class="text-sm text-muted-foreground"
+      id=":r7:-form-item-description"
+    >
+      Insert your newsapi token here
+    </p>
+  </div>
+  <button
+    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+    disabled=""
+    type="submit"
+  >
+    Login
+  </button>
+</form>
