@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { useAppSelector } from '@/hooks/redux-hooks';
@@ -11,12 +11,13 @@ import { Button } from '@/components/atoms/button';
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [logout, { isLoading }] = useLogoutMutation();
   const session = useAppSelector(selectSession);
 
   // Poll every 5 minutes to check if the user is logged in
-  const { error } = useSessionQuery('userSession', {
+  const { error } = useSessionQuery(null, {
     pollingInterval: 1000 * 60 * 5,
   });
 
@@ -26,7 +27,8 @@ export const Navbar = () => {
     }
   }, [error, navigate]);
 
-  const handleLogout = () => {
+  const handleSession = () => {
+    if (location.pathname === '/login') return null;
     logout(null);
     navigate('/login');
   };
@@ -35,7 +37,7 @@ export const Navbar = () => {
     <nav className='h-14 w-full border-b border-neutral-300'>
       <PageLayout className='flex items-center justify-between'>
         <h1 className='text-lg'>Postinaine</h1>
-        <Button onClick={handleLogout} className='w-20'>
+        <Button onClick={handleSession} className='w-20'>
           {isLoading ? <LoadingSpinner /> : session.userId ? 'Logout' : 'Login'}
         </Button>
       </PageLayout>
