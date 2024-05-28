@@ -37,25 +37,25 @@ The backend is a Python application built with FastAPI. It includes  API endpoin
 Clone the project
 
 ```bash
-  git clone https://github.com/karlthomaas/postinaine.git
+git clone https://github.com/karlthomaas/postinaine.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd postinaine
+cd postinaine
 ```
 
 Build docker container
 
 ```bash
-  docker-compose build
+docker-compose build
 ```
 
 Run docker container
 
 ```bash
-  docker-compose up
+docker-compose up
 ```
 
 
@@ -64,7 +64,7 @@ Run docker container
 To run tests, run the following command
 
 ```bash
-  npm run test
+npm run test
 ```
 
 To view the coverage, run the following command
