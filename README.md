@@ -58,6 +58,8 @@ Run docker container
 docker-compose up
 ```
 
+Open http://localhost:3000
+
 
 ## Running Tests
 
