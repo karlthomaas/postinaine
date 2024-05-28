@@ -74,11 +74,12 @@ npm run coverage
 
 ## Screenshots
 
+#### News page
+![App Screenshot](https://i.postimg.cc/266Hbdpk/Screenshot-2024-05-28-at-18-09-21-Vite-React-TS.png)
+
 #### Login Panel
 ![App Screenshot](https://i.postimg.cc/bJN50cnj/Screenshot-2024-05-28-at-18-08-18-Vite-React-TS.png)
 
-#### News page
-![App Screenshot2](https://i.postimg.cc/266Hbdpk/Screenshot-2024-05-28-at-18-09-21-Vite-React-TS.png)
-## Authors
 
+## Authors
 - [@karlthomaas](https://www.github.com/karlthomaas)
