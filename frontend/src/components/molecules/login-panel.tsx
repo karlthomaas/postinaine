@@ -11,7 +11,7 @@ import { Input } from '@/components/atoms/input';
 
 const formSchema = z.object({
   email: z.string().email(),
-  api_token: z.string().min(32, { message: 'API token must be at least 32 characters' }),
+  api_token: z.string(),
 });
 
 export type LoginFormProps = z.infer<typeof formSchema>;
