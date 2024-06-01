@@ -1,9 +1,9 @@
-import { useNewsQuery } from '@/features/apiActions';
+import { useNewsQuery } from '@/services/backend';
 import { Article } from '@/components/atoms/article';
 import { useMemo } from 'react';
 
 export default function NewsPage() {
-  const { data, isLoading } = useNewsQuery(null);
+  const { data, isLoading } = useNewsQuery();
 
   const loadingArticles = Array.from({ length: 14 }).map((_, index) => (
     <Article size={index < 2 ? 'lg' : index < 6 ? 'md' : 'sm'} isLoading={true} key={index} />

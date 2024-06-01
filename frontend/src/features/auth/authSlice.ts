@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { backendApi } from '../apiActions';
+import { backendApi } from '@/services/backend';
 import { RootState } from '@/store';
 
 interface AuthState {

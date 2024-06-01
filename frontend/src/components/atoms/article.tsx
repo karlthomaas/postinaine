@@ -1,5 +1,16 @@
-import type { NewsArticle } from '@/types/news';
 import clsx from 'clsx';
+
+export interface NewsArticle {
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+}
 
 interface ArticleProps {
   article?: NewsArticle;

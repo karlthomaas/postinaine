@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { Article } from '@/components/atoms/article';
-import type { NewsArticle } from '@/types/news';
+import type { NewsArticle } from '@/components/atoms/article';
 
 const testArticle: NewsArticle = {
   url: 'https://test.com',

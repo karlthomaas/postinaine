@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/atoms/form';
 import { LoadingSpinner } from '@/components/atoms/loading-spinner';
-import { useLoginMutation, LoginFetchError } from '@/features/apiActions';
+import { BackendError, useLoginMutation } from '@/services/backend';
 import { Button } from '@/components/atoms/button';
 import { Input } from '@/components/atoms/input';
 
@@ -14,11 +14,13 @@ const formSchema = z.object({
   api_token: z.string().min(32, { message: 'API token must be at least 32 characters' }),
 });
 
+export type LoginFormProps = z.infer<typeof formSchema>;
+
 export const LoginPanel = () => {
   const [login, loginInfo] = useLoginMutation();
   const navigate = useNavigate();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<LoginFormProps>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
@@ -26,21 +28,18 @@ export const LoginPanel = () => {
     },
   });
 
-  const navigateToHome = () => {
-    navigate('/');
-  };
-
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    login(values)
-      .unwrap()
-      .then(() => navigateToHome())
-      .catch((error: LoginFetchError) => {
-        if (error.status === 401) {
-          form.setError('api_token', { message: error.data.detail });
-        } else {
-          form.setError('api_token', { message: 'An itnernal error occurred, please try again later!' });
-        }
-      });
+  const onSubmit = async (values: LoginFormProps) => {
+    try {
+      await login(values).unwrap();
+      navigate('/');
+    } catch (error) {
+      if (error && typeof error === 'object' && 'data' in error) {
+        const backendError = error as BackendError;
+        form.setError('api_token', { message: backendError.data.detail });
+      } else {
+        form.setError('api_token', { message: 'An internal error occurred, please try again later!' });
+      }
+    }
   };
 
   return (

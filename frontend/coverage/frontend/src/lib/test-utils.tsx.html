@@ -138,7 +138,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 &nbsp;
 import authReducer from '@/features/auth/authSlice';
-import { backendApi } from '@/features/apiActions';
+import { backendApi } from '@/services/backend/backend';
 import type { AppStore, RootState } from '@/store';
 &nbsp;
 interface ExtendedRenderOptions extends Omit&lt;RenderOptions, 'queries'&gt; {

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { useAppSelector } from '@/hooks/redux-hooks';
 import { selectSession } from '@/features/auth/authSlice';
-import { useLogoutMutation, useSessionQuery } from '@/features/apiActions';
+import { useLogoutMutation, useSessionQuery } from '@/services/backend';
 
 import { LoadingSpinner } from '@/components/atoms/loading-spinner';
 import { PageLayout } from '@/components/atoms/page-layout';
@@ -17,7 +17,7 @@ export const Navbar = () => {
   const session = useAppSelector(selectSession);
 
   // Poll every 5 minutes to check if the user is logged in
-  const { error } = useSessionQuery(null, {
+  const { error } = useSessionQuery(undefined, {
     pollingInterval: 1000 * 60 * 5,
   });
 
@@ -29,7 +29,7 @@ export const Navbar = () => {
 
   const handleSession = () => {
     if (location.pathname === '/login') return null;
-    logout(null);
+    logout();
     navigate('/login');
   };
 
